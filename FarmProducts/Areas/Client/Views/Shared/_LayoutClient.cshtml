@@ -4,46 +4,46 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>FarmProducts</title>
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/FarmProducts.styles.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/profile.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/orders.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/farm.css" asp-append-version="true" />
+
 </head>
 <body>
-    <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container-fluid">
-                <img src="~/img/images.jpg" alt="" class="logo-image" style="">
-                <a class="navbar-brand" asp-area="Client" asp-controller="Home" asp-action="Index">FarmProducts</a>
+    <header id="header">
+        <nav class="navbar">
 
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="Client" asp-controller="Home" asp-action="Index">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="Client" asp-controller="Farm" asp-action="Index">Farms</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="Client" asp-controller="Order" asp-action="Index">Orders</a>
-                        </li>
-                    </ul>
-                    <partial name="_LoginPartial" />
-                </div>
+            <img src="~/img/images.jpg" alt="" class="logo-image" style="">
+            <a class="navbar-brand" asp-area="Client" asp-controller="Home" asp-action="Index">FarmProducts</a>
+
+            <div class="navbar-items">
+                <ul class="navbar-ul" >
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" asp-area="Client" asp-controller="Home" asp-action="Index">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" asp-area="Client" asp-controller="Farm" asp-action="AllFarms">Farms</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" asp-area="Client" asp-controller="Order" asp-action="OrderHistory">Orders</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" asp-area="Client" asp-controller="Profile" asp-action="MyProfile">Profile</a>
+                    </li>
+                </ul>
+                <partial name="_LoginPartial" />
             </div>
         </nav>
     </header>
-    <div class="container">
-        <main role="main" class="pb-3">
-            @RenderBody()
-        </main>
-    </div>
 
-    <footer class="border-top footer text-muted">
-        <div class="container">
+    <main id="main">
+        @RenderBody()
+    </main>
+
+
+    <footer id="footer">
+        <div class="footer-container">
             &copy; 2022 - FarmProducts - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
         </div>
     </footer>

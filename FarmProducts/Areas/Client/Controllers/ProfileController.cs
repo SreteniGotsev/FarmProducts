@@ -2,13 +2,14 @@
 
 namespace FarmProducts.Areas.Client.Controllers
 {
-    public class OrderController : BaseController
+    public class ProfileController : BaseController
     {
-        public IActionResult OrderHistory()
+        public IActionResult MyProfile()
         {
             return View();
         }
-        public IActionResult Details()
+
+        public IActionResult Edit()
         {
             return View();
         }

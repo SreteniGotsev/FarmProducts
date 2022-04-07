@@ -8,5 +8,9 @@ namespace FarmProducts.Areas.Client.Controllers
         {
             return View();
         }
+        public IActionResult Cart()
+        {
+            return View();
+        }
     }
 }
