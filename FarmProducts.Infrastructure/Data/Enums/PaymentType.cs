@@ -6,7 +6,10 @@ using System.Threading.Tasks;
 
 namespace FarmProducts.Infrastructure.Data
 {
-    public class Status
+    public enum PaymentType
     {
+        Cash=0,
+        Card=1,
+        Coupon=2,
     }
 }
