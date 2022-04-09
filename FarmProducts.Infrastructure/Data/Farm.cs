@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using Microsoft.AspNetCore.Identity;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace FarmProducts.Infrastructure.Data
 {
@@ -22,13 +18,14 @@ namespace FarmProducts.Infrastructure.Data
 
         public string Certificate { get; set; }
 
+        public bool IsRegistered { get; set; }
+
         [Required]
-        public Guid FarmeId { get; set; }
-       
+        public Guid FarmerId { get; set; }
         public Farmer Farmer { get; set; }
 
-
         public ICollection<Product> Products { get; set; } = new List<Product>();
+
 
         public ICollection<City> Cities { get; set; } = new List<City>();
 

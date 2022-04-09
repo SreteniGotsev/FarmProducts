@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace FarmProducts.Infrastructure.Data
 {
@@ -18,17 +14,19 @@ namespace FarmProducts.Infrastructure.Data
         [MaxLength(225)]
         public string Description { get; set; }
         
-        [Range(0,10000)]
+        [Range(0,10000.00)]
+        [Column(TypeName = "Money")]
         public decimal Price { get; set; }
         
         [Required]
         public Category Category { get; set; }
 
+        [ForeignKey("Farm")]
         public Guid FarmId { get; set; }
         
         [Required]
         public Farm Farm { get; set; }
         
-        public ICollection<Order> orders { get; set; } = new List<Order>();
+        public ICollection<OrderProduct> Orders { get; set; } = new List<OrderProduct>();
     }
 }
