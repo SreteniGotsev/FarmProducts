@@ -1,0 +1,55 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>FarmProducts</title>
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/profile.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/orders.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/farm.css" asp-append-version="true" />
+
+</head>
+<body>
+    <header id="header">
+        <nav class="navbar">
+
+            <img src="~/img/0_Happy-multi-generation-family-taking-a-walk-with-their-dog-in-autumn-park.jpg" alt="" class="logo-image" style="">
+            <a class="navbar-brand" asp-area="Farmer" asp-controller="Home" asp-action="Index">FarmProducts</a>
+
+            <div class="navbar-items">
+                <ul class="navbar-ul" >
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" asp-area="Farmer" asp-controller="Home" asp-action="Index">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" asp-area="Farmer" asp-controller="Farm" asp-action="FarmView">MyFarm</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" asp-area="Farmer" asp-controller="Order" asp-action="AllOrders">Orders</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" asp-area="Farmer" asp-controller="Profile" asp-action="MyProfile">Profile</a>
+                    </li>
+                </ul>
+                <partial name="_LoginPartial" />
+            </div>
+        </nav>
+    </header>
+
+    <main id="main">
+        @RenderBody()
+    </main>
+
+
+    <footer id="footer">
+        <div class="footer-container">
+            &copy; 2022 - FarmProducts - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+        </div>
+    </footer>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>
