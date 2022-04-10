@@ -8,8 +8,11 @@ namespace FarmProducts.Areas.Client.Controllers
         {
             return View();
         }
-
         public IActionResult Edit()
+        {
+            return View();
+        }
+        public IActionResult AddProfile()
         {
             return View();
         }

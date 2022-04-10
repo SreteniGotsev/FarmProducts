@@ -5,8 +5,6 @@ namespace FarmProducts.Areas.Client.Controllers
 {
     public class FarmController : BaseController
     {
-        
-
         public IActionResult AllFarms()
         {
             

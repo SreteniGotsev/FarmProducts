@@ -5,6 +5,7 @@ namespace FarmProducts.Areas.Client.Controllers
 {
     //[Authorize(Roles = "Client")]
     [Area("Client")]
+    [Authorize]
     public class BaseController : Controller
     {
        
