@@ -1,24 +1,162 @@
-html {
-  font-size: 14px;
+* {
+    margin: 0;
+    box-sizing: border-box
 }
 
-@media (min-width: 768px) {
-  html {
+a {
+    text-decoration: none;
+    color: darkslategrey;
+}
+
+ul {
+    list-style-type: none;
+}
+
+html {
+    font-family: sans-serif;
     font-size: 16px;
-  }
-}
-
-html {
-  position: relative;
-  min-height: 100%;
+    background: url(../img/1600px_COLOURBOX29638410.jpg) no-repeat center fixed;
+    background-size: cover;
+    height: 97%;
 }
 
 body {
-  margin-bottom: 60px;
+    margin-top: 20px;
+    margin-bottom: 0px;
+    background: url(../img/gruenland_schmuck-e1482389553336-1600x448.jpg) no-repeat center fixed;
+    height: 100%;
+    width: 100%;
 }
 
-.logo-image{
-    height: 6rem;
-    border-radius:50%;
-    margin: 1rem 1rem -3.5rem 1rem;
+#header {
+    position: center;
+    background-color: antiquewhite;
+    height: 3rem;
+}
+
+#main {
+    margin-top: 5rem;
+    display: flex;
+    justify-content: center;
+}
+
+
+#footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 50px; /* Height of the footer */
+    background-color: beige;
+    text-align: center;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    padding: 0px 20px;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+}
+
+.logo-image {
+    height: 7rem;
+    border-radius: 50%;
+    margin: -0.5rem 2rem -3rem 1rem;
+}
+
+.navbar-items {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.navbar-ul {
+    display: flex;
+}
+
+.navbar-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+
+
+.nav-item {
+    margin: 0px 10px;
+}
+
+.index {
+    margin-top: 2rem;
+    height: 100%;
+}
+
+.article {
+    height: 25rem;
+    width: 30rem;
+    position: absolute;
+    background-color: beige;
+    display: flex;
+    flex-direction: column;
+}
+
+    .article h2 {
+        padding: 1rem;
+        margin: 1rem;
+        text-align: center;
+    }
+
+    .article p {
+        padding: 1rem;
+        margin: 1rem;
+        text-align: center;
+    }
+
+.footer-container {
+    padding: 0.8rem;
+}
+
+#registerField, #account {
+    padding: 1rem;
+    background-color: white;
+}
+
+
+#registerForm hr {
+    margin: 0.5rem;
+}
+
+.form-floating {
+    display: flex;
+    flex-direction: column;
+    margin: 0.5rem;
+}
+
+.section-article {
+    width:40rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.index-article {
+    max-width: 15rem;
+    height: 20rem;
+    padding: 3rem 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    border-radius: 10px;
+    cursor: default;
+}
+
+.index-article a{
+    border:solid;
+    border-color:grey;
+    border-radius:5px;
+    padding:5px;    
+    text-align:center;
 }
