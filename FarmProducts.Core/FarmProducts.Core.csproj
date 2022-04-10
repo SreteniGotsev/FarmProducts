@@ -10,4 +10,8 @@
     <ProjectReference Include="..\FarmProducts.Infrastructure\FarmProducts.Infrastructure.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Include="Contracts\IFarmerService.cs" />
+  </ItemGroup>
+
 </Project>
