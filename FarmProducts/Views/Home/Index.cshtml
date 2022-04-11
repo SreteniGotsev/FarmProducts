@@ -1,8 +1,27 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
+﻿@using FarmProducts.Infrastructure.Data.Identity
+@using Microsoft.AspNetCore.Identity
+@inject SignInManager<User> SignInManager
+
+
+@if (SignInManager.IsSignedIn(User))
+{
+    <div>
+        <section class="section-article">
+            <article class="index-article" style="background-color:lightblue">
+                <h3>Continue as a customer</h3>
+                <p>By doing that you will be able to order products strigth from the local farmers.</p>
+                <a class="nav-link text-dark" asp-area="Client" asp-controller="Home" asp-action="Index">Contiue</a>
+            </article>
+            <article class="index-article" style="background-color:lightgray">
+                <h3>Continue as a farmer</h3>
+                <p>By doing that you will be able to offer your ptoducts stright to the local citizens</p>
+                <a class="nav-link text-dark" asp-area="Farmer" asp-controller="Home" asp-action="Index">Contiue</a>
+            </article>
+        </section>
+    </div>
+}
+else
+{
+    <div></div>
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>

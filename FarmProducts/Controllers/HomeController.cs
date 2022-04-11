@@ -1,4 +1,5 @@
-﻿using FarmProducts.Models;
+﻿using FarmProducts.Core.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
@@ -12,13 +13,20 @@ namespace FarmProducts.Controllers
         {
             _logger = logger;
         }
+        
 
+        
         public IActionResult Index()
         {
             return View();
         }
 
         public IActionResult Privacy()
+        {
+            return View();
+        }
+
+        public IActionResult About()
         {
             return View();
         }
