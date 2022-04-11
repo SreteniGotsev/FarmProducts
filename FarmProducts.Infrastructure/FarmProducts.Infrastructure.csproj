@@ -21,9 +21,4 @@
     </PackageReference>
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Data\Common\" />
-    <Folder Include="Data\Repositories\" />
-  </ItemGroup>
-
 </Project>

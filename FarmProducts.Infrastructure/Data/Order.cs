@@ -9,8 +9,10 @@ namespace FarmProducts.Infrastructure.Data
         [Required]
 
         [ForeignKey("Customer")]
-        public Guid CustomerId { get; set; } 
+        public Guid CustomerId { get; set; }
         public Customer Customer { get; set; }
+        [Column(TypeName = "DateTime2")]
+        public DateTime DateCreated {get;set;} = DateTime.Now;
         [Required]
         [Column(TypeName = "Money")]
         public decimal TotalPrice { get; set; }

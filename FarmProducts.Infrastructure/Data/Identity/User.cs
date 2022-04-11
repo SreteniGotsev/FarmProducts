@@ -9,5 +9,7 @@ namespace FarmProducts.Infrastructure.Data.Identity
 {
     public class User:IdentityUser
     {
+        public Farmer Farmer { get; set; }
+        public Customer Customer { get; set; }
     }
 }
