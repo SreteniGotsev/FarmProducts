@@ -10,9 +10,8 @@ namespace FarmProducts.Core.Services
 {
 	public interface IFarmerService
 	{
-		Task<UserViewModel> GetUser(string id);
-		Task<bool> AddFarmer(UserViewModel user);
+		Task<bool> AddFarmer(FarmerViewModel model, string userId);
 		Task<FarmerViewModel> GetFaremr(string id);
-		Task<bool> EditTFarmer(FarmerViewModel model);
+		Task<bool> EditFarmer(FarmerViewModel model);
 	}
 }
