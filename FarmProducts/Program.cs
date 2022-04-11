@@ -1,4 +1,8 @@
+using FarmProducts.Core.Contracts;
+using FarmProducts.Core.Services;
 using FarmProducts.Data;
+using FarmProducts.Infrastructure.Data.Identity;
+using FarmProducts.Infrastructure.Data.Repositories;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
@@ -8,12 +12,17 @@ var builder = WebApplication.CreateBuilder(args);
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlServer(connectionString));
+
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
-builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
+builder.Services.AddDefaultIdentity<User>(options => options.SignIn.RequireConfirmedAccount = true)  
     .AddEntityFrameworkStores<ApplicationDbContext>();
-    //.AddRoleManager<IdentityRole>();
+//.AddRoleManager<IdentityRole>();
 
+builder.Services.AddScoped<IApplicationDbRepository, ApplicationDbRepository>();
+builder.Services.AddScoped<IUserService, UserService>();
+builder.Services.AddScoped<IFarmerService, FarmerService>();
+builder.Services.AddScoped<ICustomerService, CustomerService>();
 
 builder.Services.AddControllersWithViews();
 
