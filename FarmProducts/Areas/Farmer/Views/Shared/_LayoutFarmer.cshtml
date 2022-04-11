@@ -29,7 +29,19 @@
                         <a class="nav-link text-dark" asp-area="Farmer" asp-controller="Order" asp-action="AllOrders">Orders</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-dark" asp-area="Farmer" asp-controller="Profile" asp-action="MyProfile">Profile</a>
+                        <button onclick="myFunction(event)" class="dropth">Profile</button>
+                        <ul id="dairy" class="dropdown-menu">
+                            <li>
+                                <a class="nav-link text-dark" asp-area="Client" asp-controller="Profile" asp-action="MyProfile">MyProfile</a>
+                            </li>
+                            <li>
+                                <a class="nav-link text-dark" asp-area="Client" asp-controller="Profile" asp-action="AddProfile">AddProfile</a>
+                            </li>
+                            <li>
+                                <a class="nav-link text-dark" asp-area="Client" asp-controller="Profile" asp-action="EditProfile">EditProfile</a>
+                            </li>
+
+                        </ul>
                     </li>
                 </ul>
                 <partial name="_LoginPartial" />

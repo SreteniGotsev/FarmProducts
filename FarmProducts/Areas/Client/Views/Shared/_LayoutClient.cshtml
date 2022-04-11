@@ -18,7 +18,7 @@
             <a class="navbar-brand" asp-area="Client" asp-controller="Home" asp-action="Index">FarmProducts</a>
 
             <div class="navbar-items">
-                <ul class="navbar-ul" >
+                <ul class="navbar-ul">
                     <li class="nav-item">
                         <a class="nav-link text-dark" asp-area="Client" asp-controller="Home" asp-action="Index">Home</a>
                     </li>
@@ -29,7 +29,19 @@
                         <a class="nav-link text-dark" asp-area="Client" asp-controller="Order" asp-action="OrderHistory">Orders</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-dark" asp-area="Client" asp-controller="Profile" asp-action="MyProfile">Profile</a>
+                        <button onclick="myFunction(event)" class="dropth">Profile</button>
+                        <ul id="dairy" class="dropdown-menu">
+                            <li>
+                                <a class="nav-link text-dark" asp-area="Client" asp-controller="Profile" asp-action="MyProfile">MyProfile</a>
+                            </li>
+                            <li>
+                                <a class="nav-link text-dark" asp-area="Client" asp-controller="Profile" asp-action="AddProfile">AddProfile</a>
+                            </li>
+                            <li>
+                                <a class="nav-link text-dark" asp-area="Client" asp-controller="Profile" asp-action="EditProfile">EditProfile</a>
+                            </li>
+
+                        </ul>
                     </li>
                 </ul>
                 <partial name="_LoginPartial" />
