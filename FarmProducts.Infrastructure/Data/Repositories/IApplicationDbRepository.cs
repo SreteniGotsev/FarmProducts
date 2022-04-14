@@ -1,9 +1,6 @@
-﻿
-
-namespace FarmProducts.Infrastructure.Data.Repositories
+﻿namespace FarmProducts.Infrastructure.Data.Repositories
 {
-    public interface IApplicationDbRepository : IRepository
+    public interface IApplicationDbRepository:IRepository
     {
-                  
     }
 }

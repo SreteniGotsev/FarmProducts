@@ -13,8 +13,11 @@ namespace FarmProducts.Infrastructure.Data
         public string Name { get; set; }
         [Required]
         [MaxLength(50)]
-        public string Surname { get; set; }      
-
+        public string Surname { get; set; }    
+        [MinLength(9)]
+        [MaxLength(11)]
+        public string PhoneNumber { get; set; }
+        [ForeignKey("User")]
         public string UserId { get; set; }
         public User User { get; set; }
         public Farm Farm { get; set; }

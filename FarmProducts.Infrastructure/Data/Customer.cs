@@ -17,8 +17,11 @@ namespace FarmProducts.Infrastructure.Data
         [Required]
         [MaxLength(150)]
         public string Address { get; set; }
+        [MaxLength(11)]
+        [MinLength(9)]
+        public string PhoneNumber { get; set; }
         public ICollection<Order> Orders { get; set; } = new List<Order>();
-
+        [ForeignKey("User")]
         public string UserId { get; set; }
         public User User { get; set; }
     }

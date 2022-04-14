@@ -25,7 +25,7 @@ namespace FarmProducts.Data
 
             base.OnModelCreating(builder);
         }
-
+        public DbSet<User> Users { get; set; }
         public DbSet<OrderProduct> OrderProducts { get; set; } 
         public DbSet<Customer>? Customers { get; set; }
         public DbSet<Product>? Products { get; set; }
