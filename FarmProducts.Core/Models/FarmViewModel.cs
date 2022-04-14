@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FarmProducts.Infrastructure.Data;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,7 +7,16 @@ using System.Threading.Tasks;
 
 namespace FarmProducts.Core.Models
 {
-    internal class FarmViewModel
+    public class FarmViewModel
     {
+        public Guid Id { get; set; }
+        public string Name { get; set; }
+        public string Address { get; set; }
+        public string Description { get; set; }
+        public string Certificate { get; set; }
+        public bool IsRegistered { get; set; }
+        public Guid FarmerId { get; set; }
+        public ICollection<City> Cities { get; set; } = new List<City>();
+        
     }
 }

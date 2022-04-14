@@ -9,8 +9,8 @@ namespace FarmProducts.Core.Contracts
 {
     public interface ICustomerService
     {
-        Task<bool> AddCustomer(CustomerViewModel model, string userId);
-        Task<CustomerViewModel> GetCustomer(string id);
+        Task<bool> AddCustomer(CustomerViewModel model);
+        Task<CustomerViewModel> GetCustomer();
         Task<bool> EditCustomer(CustomerViewModel model);
     }
 }

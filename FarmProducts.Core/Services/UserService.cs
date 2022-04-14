@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Identity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -16,16 +17,17 @@ namespace FarmProducts.Core.Services
     {
         private readonly IApplicationDbRepository repo;
         private readonly UserManager<User> manager;
-        public UserService(IApplicationDbRepository _repo,UserManager<User> _manager)
+        private readonly IHttpContextAccessor accessor;
+        public UserService(IApplicationDbRepository _repo,UserManager<User> _manager, IHttpContextAccessor _accessor)
         {
             repo= _repo;
             manager= _manager;
+            accessor = _accessor;
         }
-        public async Task<UserViewModel> GetUser()
+        public string GetUserId()
         {
-            var user = "p";
-
-            return new UserViewModel() { Id = user };
+            var userId =  accessor.HttpContext.User.FindFirst(ClaimTypes.NameIdentifier).Value;
+            return userId;
 
         }
     }

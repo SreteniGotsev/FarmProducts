@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace FarmProducts.Core.Models
 {
-    internal class OrderViewModel
+    public class OrderViewModel
     {
     }
 }

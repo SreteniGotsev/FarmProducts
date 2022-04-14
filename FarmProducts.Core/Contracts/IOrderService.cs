@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FarmProducts.Core.Models
+namespace FarmProducts.Core.Contracts
 {
-    internal class AddFarmVieModel
+    internal class IOrderService
     {
     }
 }
