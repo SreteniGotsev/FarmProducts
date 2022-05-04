@@ -9,25 +9,32 @@ namespace FarmProducts.Areas.Client.Controllers
     public class ProfileController : BaseController
     {
         private readonly ICustomerService service;
-        private readonly IHttpContextAccessor accessor;
-        public ProfileController(ICustomerService _service, IHttpContextAccessor _accessor)
+        public ProfileController(ICustomerService _service)
         {
             service = _service;
-            accessor = _accessor;
         }
         public IActionResult MyProfile()
         {
-           var _userId = accessor.HttpContext.User.FindFirst(ClaimTypes.NameIdentifier).Value;
-            var model = service.GetCustomer(_userId);
-            return View(model);
+            var model = service.GetCustomer();
+            if (model.Result == null)
+            {
+                return RedirectToAction("AddProfile");
+            }
+            return View(model.Result);
         }
         public IActionResult EditProfile()
         {
-            return View();
+            var model = service.GetCustomer();
+            if (model.Result == null)
+            {
+                return RedirectToAction("AddProfile");
+            }
+            return View(model.Result);
         }
-        [HttpPut]
+        [HttpPost]
         public IActionResult EditProfile(CustomerViewModel model)
         {
+            
             service.EditCustomer(model);
             return RedirectToAction("MyProfile");
         }
@@ -38,9 +45,7 @@ namespace FarmProducts.Areas.Client.Controllers
         [HttpPost]
         public IActionResult AddProfile(CustomerViewModel model)
         {
-
-            var userId = accessor.HttpContext.User.FindFirst(ClaimTypes.NameIdentifier).Value;
-            service.AddCustomer(model, userId);
+            service.AddCustomer(model);
             return RedirectToAction("Index", "Home");
         }
     }
