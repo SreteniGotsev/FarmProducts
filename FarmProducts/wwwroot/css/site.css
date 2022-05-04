@@ -14,6 +14,7 @@ ul {
 
 button{
     font-size:16px;
+    font-family:sans-serif;
 }
 
 html {
@@ -42,6 +43,9 @@ body {
     margin-top: 5rem;
     display: flex;
     justify-content: center;
+    flex-direction:column;
+    align-items:center;
+
 }
 
 
@@ -186,3 +190,69 @@ body {
     margin:0.5rem;
 }
 
+.board {
+    background-color:beige;
+    width: 20rem;
+    padding: 3rem;
+  
+}
+
+
+
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    overflow: auto;
+    border: hidden;
+    background-color: white;
+    height: auto;
+    width: 10rem;
+    padding: 1rem;
+}
+
+.show {
+    display: block;
+}
+
+.product-element {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background-color: azure;
+    height: 5rem;
+}
+
+
+.adding-button {
+    padding: 1px 3px;
+    color: white;
+    background: red;
+    border: solid;
+    border-color: black;
+    border-radius: 10px;
+}
+
+button {
+    outline: none !important;
+    border: none;
+    background: 0 0
+}
+
+    button:hover {
+        cursor: pointer
+    }
+
+.main-card {
+    padding: 2rem;
+    display: inline-flex;
+    justify-content: space-around;
+    flex-direction:column;
+    width: 40rem;
+    background-color: beige;
+    border-radius: 2rem;
+}
+
+.farms-collection {
+    background-color: beige;
+    margin: 1rem;
+}

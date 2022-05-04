@@ -1,0 +1,31 @@
+﻿
+.pesho{
+    background-color:darkseagreen;
+    width:60rem;
+    display:flex;
+    flex-direction:column;
+    margin: 3rem 0rem;
+}
+.farm-description{
+    text-align:center;
+    padding:10px;
+}
+#heading-one{
+    padding:10px;
+    text-align:center;
+}
+
+#category-navbar{
+    text-align:center;
+}
+
+#farm-navigation{
+   display:flex;
+   justify-content:space-around;
+   width:100%;
+}
+
+
+
+
+

@@ -23,6 +23,10 @@ builder.Services.AddScoped<IApplicationDbRepository, ApplicationDbRepository>();
 builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<IFarmerService, FarmerService>();
 builder.Services.AddScoped<ICustomerService, CustomerService>();
+builder.Services.AddScoped<IFarmService, FarmService>();
+builder.Services.AddScoped<IProductService, ProductService>();
+//builder.Services.AddScoped<IOrderService, OrderService>();
+builder.Services.AddScoped<ICartService, CartService>();
 
 builder.Services.AddControllersWithViews();
 

@@ -1,0 +1,24 @@
+﻿.farm-view {
+    padding:3rem;
+    background-color: beige;
+    text-align: center;
+    border-radius:2rem;
+}
+
+    .farm-view article {
+        padding:2rem;
+        text-align: center;
+        display:flex;
+        flex-direction:column;
+        justify-content:space-around;
+        align-content:center;
+    }
+
+        .farm-view article a {
+            background: darkgrey;
+            color:beige;
+            padding:0.5rem !important;
+            margin:0.2rem;
+        }
+
+   

@@ -50,15 +50,6 @@ textarea {
         border-color: transparent !important
     }
 
-button {
-    outline: none !important;
-    border: none;
-    background: 0 0
-}
-
-    button:hover {
-        cursor: pointer
-    }
 
 iframe {
     border: none !important
