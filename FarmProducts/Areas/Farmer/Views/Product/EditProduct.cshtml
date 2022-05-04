@@ -1,5 +1,48 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
-}
+﻿@model ProductViewModel
+<section class="add-product">
+    <article>
+        <img src="~/img/photo-coming-soon.jpg">
+        <!--When no-relational Db included in the project, implement the use of individual's items picture-->
+    </article>
+    <article>
+        <form method="post">
+            <label for="Name">Name</label>
+            <input type="text" id="Name" name="Name" value=@Model.Name; />
+            <label for="Description">Description</label>
+            <textarea rows="4" cols="15" id="Description" name="Description">@Model.Description </textarea>
+            <label for="Category">Category:</label>
+            <input list="products" name="Category" id="Category" value=@Model.Category>
+            <datalist id="products">
+                <option value="MilkAndCream" />
+                <option value="Eggs" />
+                <option value="Yogurt" />
+                <option value="Butter" />
+                <option value="Cheese" />
+                <option value="OtherDairy" /> 
+                <option value="Fruit" />
+                <option value="Vegetables" />
+                <option value="Nuts" />
+                <option value="Cans" />
+                <option value="Poultry" /> 
+                <option value="Beef" />
+                <option value="Pork" />
+                <option value="Lamb" />
+                <option value="Seafood" />
+                <option value="BaconAndSausage" /> 
+                <option value="DeliAndCharcuterie" />
+                <option value="OtherMeat" />
+                <option value="Rakia" />
+                <option value="Wine" />
+                <option value="Juice" />
+                <option value="OtherDrinks" />
+            </datalist>
+            <label for="Price">Price</label>
+            <input type="number" id="Price" required name="Price" min="0" value=@Model.Price step="0.1">
+            <label for="FarmId"></label>
+            <input type="hidden" id="FarmId" name="FarmId" value="@Model.FarmId" />
+            <label for="Id"></label>
+            <input type="hidden" id="Id" name="Id" value="@Model.Id" />
+            <input type="Submit" />
+        </form>
+    </article>
+</section>

@@ -1,5 +1,41 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
-}
+﻿@model FarmViewModel
+<section class="board">
+    <article>
+        <fieldset>
+
+            <form method="post">
+                <label for="farmName">Name</label>
+                <input type="text" id="farmName" name="Name" value=@Model.Name />
+                <label for="farmAddress">Address</label>
+                <input type="text" id="farmAddress" name="Address" value=@Model.Address />
+                <label for="farmDescription">Desctiption</label>
+                <input type="text" id="farmDescription" name="Description" value=@Model.Description.ToString() />
+                <label for="farmCerificate">Certificate</label>
+                <input type="text" id="farnCertificate" name="Certificate" value=@Model.Certificate />
+                <label for="farmRegistered">Registered?</label>
+                <input type="checkbox" id="farmRegistered" name="IsRegistered" value=@Model.IsRegistered />
+                <label for="farmCities">Citites</label>
+                <select multiple size="2" multiple type="" id="farmCities" name="Cities" value=@Model.Cities>
+                    <option>Sofia</option>
+                    <option>Plovdiv</option>
+                    <option>Varna</option>
+                    <option>StaraZagora</option>
+                    <option>Burgas</option>
+                    <option>Pleven</option>
+                    <option>Ruse</option>
+                </select>
+                <label for="farmDays">Days</label>
+                <select id="farmDays" name="Days">
+                    <option>Monday</option>
+                    <option>Tuesday</option>
+                    <option>Wednesday</option>
+                    <option>Thursday</option>
+                    <option>Friday</option>
+                    <option>Saturday</option>
+                    <option>Sunday</option>
+                </select>
+                <input type="submit" />
+            </form>
+        </fieldset>
+    </article>
+</section>

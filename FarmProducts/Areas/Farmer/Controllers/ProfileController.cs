@@ -12,30 +12,52 @@ namespace FarmProducts.Areas.Farmer.Controllers
     public class ProfileController : BaseController
     {
         private readonly IFarmerService service;
-        private readonly IHttpContextAccessor accessor;
-        public ProfileController(IFarmerService _service,IHttpContextAccessor _accessor)
+        public ProfileController(IFarmerService _service)
         {
             service = _service;
-            accessor = _accessor;
         }
         public IActionResult MyProfile()
         {
-            return View();
+            var model = service.GetFarmer();
+            if (model == null)
+            {
+                return RedirectToAction("AddProfile");
+            }
+
+            return View(model);
         }
-        public IActionResult Edit()
-        {
-            return View();
+        public IActionResult EditProfile()
+        {   
+            var model = service.GetFarmer();
+            if (model == null)
+            {
+                return RedirectToAction("AddProfile");
+            }
+            return View(model);
         }
+
+        [HttpPost]
+        public IActionResult EditProfile(FarmerViewModel model)
+        { 
+            service.EditFarmer(model);
+
+            return RedirectToAction("MyProfile");
+        }
+
         public IActionResult AddProfile()
-        {
-            return View();
+        {       
+           return View();
         }
         [HttpPost]
         public IActionResult AddProfile(FarmerViewModel model)
         {
-           
-            var userId = accessor.HttpContext.User.FindFirst(ClaimTypes.NameIdentifier).Value;
-            service.AddFarmer(model, userId);
+            service.AddFarmer(model);
+            return RedirectToAction("Index", "Home");
+        }
+
+        public IActionResult DeleteFarmer()
+        {
+            service.DeleteFarmer();
             return RedirectToAction("Index", "Home");
         }
     }

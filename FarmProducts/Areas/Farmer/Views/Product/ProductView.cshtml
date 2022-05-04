@@ -1,5 +1,18 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
-}
+﻿@model ProductViewModel
+<section class="add-product">
+    <article>
+        <img src="~/img/photo-coming-soon.jpg">
+        <!--When no-relational Db included in the project, implement the use of individual's items picture-->
+    </article>
+    <article>
+        <form method="post">
+            <p>@Model.Name</p>
+            <hr />
+            <p>@Model.Description</p>
+            <hr />
+            <p>Price:@Model.Price</p>
+            <a class="btn btn-info" asp-area="Farmer" asp-controller="Product" asp-action="EditProduct" asp-route-id=@Model.Id>Edit</a>
+            <a class="btn btn-info" asp-area="Farmer" asp-controller="Product" asp-action="DeleteProduct" asp-route-id=@Model.Id>Delete</a>
+        </form>
+    </article>
+</section>

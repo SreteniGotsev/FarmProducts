@@ -1,0 +1,36 @@
+﻿@model List<ProductViewModel>
+
+<table class="farmer-product-list">
+    <thead>
+        <tr class="table100-head">
+            <th class="column1">Image</th>
+            <th class="column2">Name</th>
+            <th class="column3">Category</th>
+            <th class="column4">Price</th>
+            <th class="column5">Details</th>
+        </tr>
+    </thead>
+    <tbody>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td class="column1"> <img src="~/img/photo-coming-soon.jpg" style="width:3rem;" /></td>
+                <td class="column2"> @item.Name</td>
+                <td class="column3"> @item.Category</td>
+                <td class="column4">@item.Price</td>
+                <td class="column5">
+                    <a asp-area="Farmer" asp-controller="Product"
+                   asp-action="ProductView"
+                   asp-route-id=@item.Id>Details</a>
+                </td>
+            </tr>
+        }
+        <tr>
+            <td colspan="4">
+
+                <p>*All prices are in BGN with VAT included. Postage is not included</p>
+            </td>
+        </tr>
+    </tbody>
+</table>

@@ -6,8 +6,10 @@
     <title>FarmProducts</title>
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/css/profile.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/css/orders.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/css/farm.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/farm-farmer.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/product-farmer.css" asp-append-version="true" />
+   
+    
 
 </head>
 <body>
@@ -29,16 +31,16 @@
                         <a class="nav-link text-dark" asp-area="Farmer" asp-controller="Order" asp-action="AllOrders">Orders</a>
                     </li>
                     <li class="nav-item">
-                        <button onclick="myFunction(event)" class="dropth">Profile</button>
+                        <button style="color:darkslategrey"onclick="myFunction(event)" class="dropth">Profile</button>
                         <ul id="dairy" class="dropdown-menu">
                             <li>
-                                <a class="nav-link text-dark" asp-area="Client" asp-controller="Profile" asp-action="MyProfile">MyProfile</a>
+                                <a class="nav-link text-dark" asp-area="Farmer" asp-controller="Profile" asp-action="MyProfile">MyProfile</a>
                             </li>
                             <li>
-                                <a class="nav-link text-dark" asp-area="Client" asp-controller="Profile" asp-action="AddProfile">AddProfile</a>
+                                <a class="nav-link text-dark" asp-area="Farmer" asp-controller="Profile" asp-action="AddProfile">AddProfile</a>
                             </li>
                             <li>
-                                <a class="nav-link text-dark" asp-area="Client" asp-controller="Profile" asp-action="EditProfile">EditProfile</a>
+                                <a class="nav-link text-dark" asp-area="Farmer" asp-controller="Profile" asp-action="EditProfile">EditProfile</a>
                             </li>
 
                         </ul>
