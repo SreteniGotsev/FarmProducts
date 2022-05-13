@@ -12,6 +12,8 @@ namespace FarmProducts.Core.Contracts
         Task<bool> AddFarm(FarmViewModel model);
         Task<bool> EditFarm(FarmViewModel model);
         FarmViewModel GetFarm();
+        public FarmViewModel GetFarmById(Guid id);
+        public IEnumerable<FarmViewModel> GetAllFarms();
         void DeleteFarm();
     }
 }

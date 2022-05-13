@@ -1,4 +1,4 @@
-﻿using FarmProducts.Models;
+﻿using FarmProducts.Core.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;

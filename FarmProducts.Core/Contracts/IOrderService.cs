@@ -6,7 +6,10 @@ using System.Threading.Tasks;
 
 namespace FarmProducts.Core.Contracts
 {
-    internal class IOrderService
+    public interface IOrderService
     {
+        Task OrderDetails();
+
+        Task AllOrders();
     }
 }
