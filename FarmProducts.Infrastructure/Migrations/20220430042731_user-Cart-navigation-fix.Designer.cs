@@ -4,6 +4,7 @@ using FarmProducts.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FarmProducts.Infrastructure.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220430042731_user-Cart-navigation-fix")]
+    partial class userCartnavigationfix
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -21,6 +23,21 @@ namespace FarmProducts.Infrastructure.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
+
+            modelBuilder.Entity("CartProduct", b =>
+                {
+                    b.Property<Guid>("CartsId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("ProductsId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("CartsId", "ProductsId");
+
+                    b.HasIndex("ProductsId");
+
+                    b.ToTable("CartProduct");
+                });
 
             modelBuilder.Entity("CityFarm", b =>
                 {
@@ -64,9 +81,6 @@ namespace FarmProducts.Infrastructure.Migrations
                     b.Property<Guid?>("OrderId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid?>("ProductId")
-                        .HasColumnType("uniqueidentifier");
-
                     b.HasKey("Id");
 
                     b.HasIndex("CustomerId")
@@ -76,33 +90,7 @@ namespace FarmProducts.Infrastructure.Migrations
                         .IsUnique()
                         .HasFilter("[OrderId] IS NOT NULL");
 
-                    b.HasIndex("ProductId");
-
                     b.ToTable("Carts");
-                });
-
-            modelBuilder.Entity("FarmProducts.Infrastructure.Data.CartItem", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("CartId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid?>("ProductId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<int>("Quantity")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("CartId");
-
-                    b.HasIndex("ProductId");
-
-                    b.ToTable("CartItems");
                 });
 
             modelBuilder.Entity("FarmProducts.Infrastructure.Data.City", b =>
@@ -520,6 +508,21 @@ namespace FarmProducts.Infrastructure.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
+            modelBuilder.Entity("CartProduct", b =>
+                {
+                    b.HasOne("FarmProducts.Infrastructure.Data.Cart", null)
+                        .WithMany()
+                        .HasForeignKey("CartsId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("FarmProducts.Infrastructure.Data.Product", null)
+                        .WithMany()
+                        .HasForeignKey("ProductsId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
             modelBuilder.Entity("CityFarm", b =>
                 {
                     b.HasOne("FarmProducts.Infrastructure.Data.City", null)
@@ -562,30 +565,9 @@ namespace FarmProducts.Infrastructure.Migrations
                         .WithOne("Cart")
                         .HasForeignKey("FarmProducts.Infrastructure.Data.Cart", "OrderId");
 
-                    b.HasOne("FarmProducts.Infrastructure.Data.Product", null)
-                        .WithMany("Carts")
-                        .HasForeignKey("ProductId");
-
                     b.Navigation("Customer");
 
                     b.Navigation("Order");
-                });
-
-            modelBuilder.Entity("FarmProducts.Infrastructure.Data.CartItem", b =>
-                {
-                    b.HasOne("FarmProducts.Infrastructure.Data.Cart", "Cart")
-                        .WithMany("Products")
-                        .HasForeignKey("CartId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("FarmProducts.Infrastructure.Data.Product", "Product")
-                        .WithMany()
-                        .HasForeignKey("ProductId");
-
-                    b.Navigation("Cart");
-
-                    b.Navigation("Product");
                 });
 
             modelBuilder.Entity("FarmProducts.Infrastructure.Data.Customer", b =>
@@ -694,11 +676,6 @@ namespace FarmProducts.Infrastructure.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("FarmProducts.Infrastructure.Data.Cart", b =>
-                {
-                    b.Navigation("Products");
-                });
-
             modelBuilder.Entity("FarmProducts.Infrastructure.Data.Customer", b =>
                 {
                     b.Navigation("Cart");
@@ -728,11 +705,6 @@ namespace FarmProducts.Infrastructure.Migrations
                 {
                     b.Navigation("Cart")
                         .IsRequired();
-                });
-
-            modelBuilder.Entity("FarmProducts.Infrastructure.Data.Product", b =>
-                {
-                    b.Navigation("Carts");
                 });
 #pragma warning restore 612, 618
         }
