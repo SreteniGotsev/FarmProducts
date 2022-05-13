@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FarmProducts.Infrastructure.Data;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -21,6 +22,9 @@ namespace FarmProducts.Core.Models
 
         [EmailAddress]
         public string Email { get; set; }
+
+        public Farm Farm { get; set; }
+        public Guid FarmId { get; set; }
 
     }
 }

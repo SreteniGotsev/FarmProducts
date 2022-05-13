@@ -1,7 +1,7 @@
 ﻿using FarmProducts.Core.Models;
 using FarmProducts.Infrastructure.Data;
 
-namespace FarmProducts.Models
+namespace FarmProducts.Core.Models
 {
     public class ProductViewModel
     {
@@ -13,6 +13,6 @@ namespace FarmProducts.Models
         public decimal Price { get; set; }
         public Guid FarmId { get; set; }    
         public Farm Farm { get; set; }
-        public ICollection<OrderProduct> Orders { get; set; } = new List<OrderProduct>();
+        public ICollection<Cart> Carts { get; set; } = new List<Cart>();
     }
 }

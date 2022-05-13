@@ -16,7 +16,10 @@ namespace FarmProducts.Core.Models
         public string Certificate { get; set; }
         public bool IsRegistered { get; set; }
         public Guid FarmerId { get; set; }
+        public string Phone { get; set; }
         public ICollection<City> Cities { get; set; } = new List<City>();
-        
+        public ICollection<Product> Products { get; set; } = new List<Product>();
+        public ICollection<Day> Days { get; set; } = new List<Day>();
+
     }
 }
