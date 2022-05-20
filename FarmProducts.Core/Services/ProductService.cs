@@ -1,14 +1,9 @@
 ﻿using FarmProducts.Core.Contracts;
+using FarmProducts.Core.Models;
 using FarmProducts.Infrastructure.Data;
 using FarmProducts.Infrastructure.Data.Repositories;
-using FarmProducts.Models;
 using Microsoft.AspNetCore.Http;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Security.Claims;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace FarmProducts.Core.Services
 {
@@ -33,19 +28,19 @@ namespace FarmProducts.Core.Services
                     Id = Guid.NewGuid(),
                     Name = model.Name,
                     Description = model.Description,
-                    Category = model.Category,
+                    Category = Enum.Parse<Category>(model.Category),
                     Price = model.Price,
                     Farm = farm,
                     FarmId = farm.Id,
-                    Orders = model.Orders
+                    Carts = model.Carts
                 };
 
-                await repo.AddAsync(product);
-                await repo.SaveChangesAsync();
+                repo.AddAsync(product);
+                repo.SaveChanges();
 
             }
         }
-
+        //Call the farm and include the Products and every individual product
         private Product ProductGet(Guid id)
         {
             var productList = ProductsGet();
@@ -58,7 +53,6 @@ namespace FarmProducts.Core.Services
             var products = repo.All<Product>().Where(x => x.FarmId == farmId.Id).ToList();
             return products;
         }
-
         private Farm FarmGet()
         {
             var userId = accessor.HttpContext.User.FindFirst(ClaimTypes.NameIdentifier).Value;
@@ -69,22 +63,18 @@ namespace FarmProducts.Core.Services
         public async Task DeleteProduct(Guid id)
         {
             var product = ProductGet(id);
-            await repo.DeleteAsync<Product>(product);
+            repo.Delete<Product>(product);
+            repo.SaveChanges();
         }
 
         public async Task EditProduct(ProductViewModel model)
         {
-            var product = await repo.GetByIdAsync<Product>(model.Id);
+            var product = repo.All<Product>().Where(p=>p.Id==model.Id).FirstOrDefault();
             product.Name = model.Name;
             product.Description = model.Description;
-            product.Category = model.Category;
-            product.Price=model.Price;
-            product.Id = model.Id;
-            product.FarmId = model.FarmId;
-            product.Farm=model.Farm;
-            product.Orders=model.Orders;
-
-            await repo.SaveChangesAsync();
+            product.Price = model.Price;
+            product.Category = Enum.Parse<Category>(model.Category);
+            repo.SaveChanges();
         }
 
         public ProductViewModel GetProduct(Guid productId)
@@ -96,11 +86,11 @@ namespace FarmProducts.Core.Services
                 Id = productDb.Id,
                 Name = productDb.Name,
                 Description = productDb.Description,
-                Category = productDb.Category,
-                Price = productDb.Price,
+                Category = productDb.Category.ToString(),
+                Price = Math.Round(productDb.Price,2),
                 Farm = productDb.Farm,
                 FarmId = productDb.Id,
-                Orders = productDb.Orders
+                Carts = productDb.Carts
             };
 
             return product;
@@ -119,11 +109,11 @@ namespace FarmProducts.Core.Services
                     Id = productDb.Id,
                     Name = productDb.Name,
                     Description = productDb.Description,
-                    Category = productDb.Category,
-                    Price = productDb.Price,
+                    Category = productDb.Category.ToString(),
+                    Price = Math.Round(productDb.Price, 2),
                     Farm = productDb.Farm,
-                    FarmId = productDb.Id,
-                    Orders = productDb.Orders
+                    FarmId = productDb.FarmId,
+                    Carts = productDb.Carts
                 };
                 products.Add(product);
             }

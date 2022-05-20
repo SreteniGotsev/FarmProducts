@@ -10,7 +10,7 @@ namespace FarmProducts.Core.Contracts
 {
     public interface ICartService
     {
-        void AddItem(Guid id);
+        void AddItem(Guid id, QuantityViewModel model);
         void RemoveItem(Guid id);
         void DeleteCart();
         IEnumerable<CartItem> GetAll();

@@ -18,7 +18,7 @@ namespace FarmProducts.Core.Models
         public Guid FarmerId { get; set; }
         public string Phone { get; set; }
         public ICollection<City> Cities { get; set; } = new List<City>();
-        public ICollection<Product> Products { get; set; } = new List<Product>();
+        public ICollection<ProductViewModel> Products { get; set; } = new List<ProductViewModel>();
         public ICollection<Day> Days { get; set; } = new List<Day>();
 
     }

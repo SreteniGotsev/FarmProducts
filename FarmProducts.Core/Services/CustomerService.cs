@@ -4,6 +4,7 @@ using FarmProducts.Infrastructure.Data;
 using FarmProducts.Infrastructure.Data.Identity;
 using FarmProducts.Infrastructure.Data.Repositories;
 using Microsoft.AspNetCore.Http;
+using Microsoft.EntityFrameworkCore;
 using System.Security.Claims;
 
 namespace FarmProducts.Core.Services
@@ -38,7 +39,7 @@ namespace FarmProducts.Core.Services
                 };
 
                 await repo.AddAsync(customer);
-                await repo.SaveChangesAsync();
+                repo.SaveChanges();
                 result = true;
             }
 
@@ -69,17 +70,20 @@ namespace FarmProducts.Core.Services
         {
             var customer = CustomerGet();
 
-            CustomerViewModel model = new CustomerViewModel()
+            if (customer != null)
             {
+                CustomerViewModel model = new CustomerViewModel()
+                {
 
-                Name = customer.Name,
-                Surname = customer.Surname,
-                Address = customer.Address,
-                PhoneNumber = customer.PhoneNumber,
-                Email = customer.User.Email,
-            };
-
-            return model;
+                    Name = customer.Name,
+                    Surname = customer.Surname,
+                    Address = customer.Address,
+                    PhoneNumber = customer.PhoneNumber,
+                    Email = customer.User.Email,
+                };
+                return model;
+            }
+            return null;
         }
 
         private string GetUserId()
@@ -91,7 +95,7 @@ namespace FarmProducts.Core.Services
         private Customer CustomerGet()
         {
             var userid = GetUserId();
-            var customer = repo.All<Customer>().Where(c => c.UserId == userid).FirstOrDefault();
+            var customer = repo.All<Customer>().Where(c => c.UserId == userid).Include("User").FirstOrDefault();
             return customer;
 
         }

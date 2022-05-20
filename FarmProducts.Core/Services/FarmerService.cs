@@ -3,6 +3,7 @@ using FarmProducts.Infrastructure.Data;
 using FarmProducts.Infrastructure.Data.Identity;
 using FarmProducts.Infrastructure.Data.Repositories;
 using Microsoft.AspNetCore.Http;
+using Microsoft.EntityFrameworkCore;
 using System.Linq;
 using System.Security.Claims;
 
@@ -23,7 +24,7 @@ namespace FarmProducts.Core.Services
 
             bool result = false;
             var userId = GetUserId();
-            var user = repo.GetByIdAsync<User>(userId).Result;
+            var user = UserGet();
 
             if (model != null && user.FarmerId == null)
             {
@@ -35,10 +36,14 @@ namespace FarmProducts.Core.Services
                     UserId = userId,
                     User = user,
                     PhoneNumber = model.PhoneNumber,
+                    Farm = null,
                 };
 
-                 repo.AddAsync(farmer);
-                 repo.SaveChanges();
+                user.FarmerId = farmer.Id;
+                user.Farmer = farmer;
+
+                repo.AddAsync(farmer);
+                repo.SaveChanges();
                 result = true;
             }
 
@@ -59,7 +64,7 @@ namespace FarmProducts.Core.Services
                 farmer.Surname = model.Surname;
                 farmer.PhoneNumber = model.PhoneNumber;
 
-                await repo.SaveChangesAsync();
+                repo.SaveChanges();
                 result = true;
             }
 
@@ -68,30 +73,43 @@ namespace FarmProducts.Core.Services
 
         public FarmerViewModel GetFarmer()
         {
-            var farmer = FarmerGet();
-
-            FarmerViewModel model = new FarmerViewModel()
+            var user = UserGet();
+            var farmer = repo.All<Farmer>().Where(x => x.Id == user.FarmerId).Include(f => f.Farm).FirstOrDefault();
+            if (farmer != null)
             {
-                Name = farmer.Name,
-                Surname = farmer.Surname,
-                PhoneNumber = farmer.PhoneNumber,
-                //Email = farmer..Email,
-            };
 
-            return model;
+                FarmerViewModel model = new FarmerViewModel()
+                {
+                    Name = farmer.Name,
+                    Surname = farmer.Surname,
+                    PhoneNumber = farmer.PhoneNumber,
+                    Email = user.Email,
+                    Farm = farmer.Farm,
+                };
+                return model;
+            }
+            return null;
+
         }
         public void DeleteFarmer()
         {
-            var farmer = FarmerGet();
-            repo.Delete(farmer);
+            var user = UserGet();
+            repo.Delete(user.Farmer);
             repo.SaveChanges();
+        }
+        private User UserGet()
+        {
+            var userId = GetUserId();
+            var user = repo.GetByIdAsync<User>(userId).Result;
+            return user;
+
         }
         private Farmer FarmerGet()
         {
-            var userid = GetUserId();
-            var farmer = repo.All<Farmer>().Where(f => f.UserId == userid).FirstOrDefault();
+            var userId = GetUserId();
+            var farmer = repo.All<Farmer>().Where(f => f.UserId == userId).FirstOrDefault();
             return farmer;
-            
+
         }
         private string GetUserId()
         {
