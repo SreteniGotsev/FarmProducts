@@ -1,4 +1,5 @@
 ﻿using FarmProducts.Core.Contracts;
+using FarmProducts.Core.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace FarmProducts.Areas.Client.Controllers
@@ -11,9 +12,11 @@ namespace FarmProducts.Areas.Client.Controllers
         {
             service = _service;
         }
-        public IActionResult AddToCart(Guid id)
+
+        public IActionResult AddToCart(QuantityViewModel model, Guid id)
         {
-            service.AddItem(id);
+            
+            service.AddItem(id, model);
             return RedirectToAction("Cart", "Home");
         }
         public IActionResult RemoveFromCart(Guid id)

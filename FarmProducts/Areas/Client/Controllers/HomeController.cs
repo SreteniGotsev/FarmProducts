@@ -17,7 +17,7 @@ namespace FarmProducts.Areas.Client.Controllers
         }
         public IActionResult Cart()
         {
-            IEnumerable<Product> products = service.GetAll();
+            IEnumerable<CartItem> products = service.GetAll();
             return View(products);
         }
     }

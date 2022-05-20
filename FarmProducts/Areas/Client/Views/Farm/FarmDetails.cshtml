@@ -1,4 +1,5 @@
-﻿@model FarmViewModel
+﻿
+@model FarmViewModel
 
 <div class="pesho">
     <section class="farm-info">
@@ -13,7 +14,9 @@
         </div>
     </section>
     <section style="height: 107px;">
-
+        @{
+            string category = null;
+        }
         <nav class="navbar navbar-default">
             <ul name="category-nav" id="farm-navigation" class="nav navbar-nav">
                 <li class="navbar-link dropdown">
@@ -21,21 +24,29 @@
                     <ul id="dairy" class="dropdown-menu">
                         <li>
                             <a href="#milk-cream">Milk &amp; Cream</a>
+                            @{
+                                category = "Milk";
+                            }
                         </li>
                         <li>
                             <a href="#eggs">Eggs</a>
+                            @category = "Eggs";
                         </li>
                         <li>
                             <a href="#yogurt">Yogurt</a>
+                            @category = "Yogurt";
                         </li>
                         <li>
                             <a href="#butter">Butter</a>
+                            @category = "Butter";
                         </li>
                         <li>
                             <a href="#cheese">Cheese</a>
+                            @category = "Cheese";
                         </li>
                         <li>
                             <a href="#other">Other</a>
+                            @category = "Other";
                         </li>
                     </ul>
                 </li>
@@ -70,6 +81,7 @@
                         </li>
                         <li>
                             <a href="#seafood">Seafood</a>
+                            @{category = "Seafood";}
                         </li>
                         <li>
                             <a href="#bacon-sausage">Bacon &amp; Sausage</a>
@@ -79,6 +91,10 @@
                         </li>
                         <li>
                             <a href="#deli-charcuterie">Others</a>
+                            @{
+                                category = "others";
+                            }
+
                         </li>
                     </ul>
                 </li>
@@ -128,15 +144,30 @@
     </section>
     <section class="producstList">
         <ul>
-            @foreach (var product in Model.Products)
+            @{
+                IEnumerable<ProductViewModel> products = null;
+                if (category != null)
+                {
+                    products = Model.Products.Where(p => p.Category == category);
+                }
+                else
+                {
+                    products = Model.Products;
+                }
+            }
+            @foreach (var product in products)
             {
+                <form>
                 <li class="product-element">
                     <img style="width:4rem;" src="~/img/photo-coming-soon.jpg">
                     <p>@product.Name</p>
                     <p>@product.Category</p>
                     <p>@product.Description</p>
+                    <label for="quantity">Quantity:</label>
+                    <input type="number" id="quantity" name="Quantity" min="1" max="20" value="1">
                     <a asp-area="Client" asp-controller="Cart" asp-action="AddToCart" asp-route-id=@product.Id>Add</a>
                 </li>
+                </form>
             }
         </ul>
     </section>

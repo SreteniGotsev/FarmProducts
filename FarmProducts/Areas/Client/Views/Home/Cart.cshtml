@@ -1,13 +1,14 @@
 ﻿@using FarmProducts.Infrastructure.Data
-@model IEnumerable<Product>
+@model IEnumerable<CartItem>
 <section style="display:flex; flex-direction:row; overflow:auto; white-space:nowrap;">
 
     @foreach (var item in Model)
     {
         <article style="background-color:beige; padding:1rem; margin:0rem 1rem;"claas="farms-collection">
-            <h3>@item.Name</h3>
+            <h3>@item.Product.Name</h3>
             <img src="~/img/photo-coming-soon.jpg">
-            <p>@item.Description</p>
+            <p>@item.Product.Description</p>
+            <p>@item.Quantity</p>
             <a class="nav-link text-dark" asp-area="Client" asp-controller="Farm" asp-action="FarmDetails" asp-route-id=@item.Id>Details</a>
             <a class="nav-link text-dark" asp-area="Client" asp-controller="Cart" asp-action="RemoveItem" asp-route-id=@item.Id>Remove</a>
         </article>
