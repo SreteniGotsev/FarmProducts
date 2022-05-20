@@ -25,10 +25,7 @@ namespace FarmProducts.Infrastructure.Data
         public Farmer Farmer { get; set; }
 
         public ICollection<Product> Products { get; set; } = new List<Product>();
-
-
         public ICollection<City> Cities { get; set; } = new List<City>();
-
         public ICollection<Day> DeliveryDays { get; set; } = new List<Day>();
     }
 }

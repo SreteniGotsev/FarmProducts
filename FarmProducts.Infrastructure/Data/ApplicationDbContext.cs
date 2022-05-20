@@ -15,19 +15,20 @@ namespace FarmProducts.Data
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
-            builder.Entity<OrderProduct>().HasKey(k => new { k.OrderId, k.ProductId });
+           
             builder.Entity<Order>().HasOne(e=>e.Customer).WithMany(e=>e.Orders).OnDelete(DeleteBehavior.Cascade);
             builder.Entity<Farm>().HasOne(e=>e.Farmer).WithOne(e=>e.Farm).OnDelete(DeleteBehavior.Cascade);
             builder.Entity<Product>().HasOne(e=>e.Farm).WithMany(e=>e.Products).OnDelete(DeleteBehavior.Cascade);
-            builder.Entity<OrderProduct>().HasOne(e=>e.Product).WithMany(e=>e.Orders).OnDelete(DeleteBehavior.NoAction);
-            builder.Entity<OrderProduct>().HasOne(e=>e.Order).WithMany(e=>e.Products).OnDelete(DeleteBehavior.NoAction);
+            builder.Entity<CartItem>().HasOne(e=>e.Cart).WithMany(e=>e.Products).OnDelete(DeleteBehavior.Cascade);
+           
 
 
             base.OnModelCreating(builder);
         }
         public DbSet<User> Users { get; set; }
-        public DbSet<OrderProduct> OrderProducts { get; set; } 
         public DbSet<Customer>? Customers { get; set; }
+        public DbSet<Cart> Carts { get; set; } 
+        public DbSet<CartItem> CartItems { get; set; }
         public DbSet<Product>? Products { get; set; }
         public DbSet<Order>? Orders { get; set; }
         public DbSet<Farmer>? Farmers { get; set; }

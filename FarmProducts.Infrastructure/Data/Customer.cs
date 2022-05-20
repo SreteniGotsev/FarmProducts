@@ -24,5 +24,8 @@ namespace FarmProducts.Infrastructure.Data
         [ForeignKey("User")]
         public string UserId { get; set; }
         public User User { get; set; }
+
+        public Guid CardId { get; set; }
+        public Cart? Cart { get; set; }
     }
 }

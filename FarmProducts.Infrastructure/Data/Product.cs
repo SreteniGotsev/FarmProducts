@@ -27,6 +27,6 @@ namespace FarmProducts.Infrastructure.Data
         [Required]
         public Farm Farm { get; set; }
         
-        public ICollection<OrderProduct> Orders { get; set; } = new List<OrderProduct>();
+        public ICollection<Cart>? Carts { get; set; } = new List<Cart>();
     }
 }

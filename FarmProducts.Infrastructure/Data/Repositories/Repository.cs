@@ -62,6 +62,11 @@ namespace FarmProducts.Infrastructure.Data.Repositories
             return this.DbSet<T>().Where(search).AsQueryable();
         }
 
+        //public IQueryable<T> All<T>(Expression<Func<T, bool>> search,Expression<Func<T,bool>> navProp) where T : class
+        //{
+        //    return this.DbSet<T>().Where(search).Include(x=>navProp).AsQueryable();
+        //}
+
         /// <summary>
         /// The result collection won't be tracked by the context
         /// </summary>

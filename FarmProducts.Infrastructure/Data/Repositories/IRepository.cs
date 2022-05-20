@@ -19,6 +19,7 @@ namespace FarmProducts.Infrastructure.Data.Repositories
         /// </summary>
         /// <returns>Queryable expression tree</returns>
         IQueryable<T> All<T>(Expression<Func<T, bool>> search) where T : class;
+        //IQueryable<T> All<T>(Expression<Func<T, bool>> search, Expression<Func<T, bool>> navProp) where T : class;
 
         /// <summary>
         /// The result collection won't be tracked by the context

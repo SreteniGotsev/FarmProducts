@@ -12,9 +12,9 @@ namespace FarmProducts.Infrastructure.Data.Identity
     {
     
         public Guid? FarmerId { get; set; }
-        public Farmer Farmer { get; set; }
+        public Farmer? Farmer { get; set; }
         
         public Guid? CustomerId { get; set; }
-        public Customer Customer { get; set; }
+        public Customer? Customer { get; set; }
     }
 }
